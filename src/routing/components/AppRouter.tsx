@@ -1,7 +1,7 @@
 import {ReactElement} from "react";
 import {NotFoundPage} from "@/public/pages/NotFoundPage.tsx";
 import {Navigate, Route, Routes} from "react-router-dom";
-import {PrivateRoutes} from "@/security/components/PrivateRoutes.tsx";
+import {PrivateRoutes} from "@/routing/components/PrivateRoutes.tsx";
 import {HomePage} from "@/public/pages/HomePage.tsx";
 import {LoginPage} from "@/security/pages/LoginPage.tsx";
 
