@@ -10,7 +10,7 @@ export const AppRouter = (): ReactElement => {
 
   return (
     <Routes>
-      <Route element={ <PrivateRoutes canActivate={ userIsLogged } destination={"/login"} /> }>
+      <Route element={ <PrivateRoutes canActivate={ userIsLogged } defaultDestination={"/login"} /> }>
         <Route path="/" element={ <HomePage /> } />
       </Route>
       <Route
