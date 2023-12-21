@@ -3,9 +3,9 @@ import {ReactElement} from "react";
 
 type PrivateRoutesProps = {
   canActivate: boolean,
-  destination: string
+  defaultDestination: string
 }
 
-export const PrivateRoutes = ({ canActivate, destination }: PrivateRoutesProps): ReactElement => {
-  return canActivate ? <Outlet /> : <Navigate to={ destination } />
+export const PrivateRoutes = ({ canActivate, defaultDestination }: PrivateRoutesProps): ReactElement => {
+  return canActivate ? <Outlet /> : <Navigate to={ defaultDestination } />
 }
