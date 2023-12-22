@@ -10,8 +10,14 @@ export default {
     extend: {
       colors: {
         gpc: {
-          purple: "#8C52FF",
-          aqua: "#5CE1E6"
+          purple: {
+            DEFAULT: "#8C52FF",
+            darker: "#7042CC"
+          },
+          aqua: {
+            DEFAULT: "#5CE1E6",
+            darker: "#4AB4B8"
+          }
         },
         dark: "#24253e",
         darkest: colors.slate["900"],
