@@ -1,5 +1,5 @@
 import {ReactElement} from "react";
-import {NotFoundPage} from "@/public/pages/NotFoundPage.tsx";
+import {PageNotFound} from "@/public/pages/PageNotFound.tsx";
 import {Navigate, Route, Routes} from "react-router-dom";
 import {PrivateRoutes} from "@/routing/components/PrivateRoutes.tsx";
 import {HomePage} from "@/public/pages/HomePage.tsx";
@@ -19,7 +19,7 @@ export const AppRouter = (): ReactElement => {
       />
       <Route
         path="*"
-        element={ <NotFoundPage /> }
+        element={ <PageNotFound /> }
       />
     </Routes>
   );
