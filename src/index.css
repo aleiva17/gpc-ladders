@@ -8,6 +8,53 @@
   }
 }
 
+@-webkit-keyframes bg-scrolling-reverse {
+  100% { background-position: 50px 50px; }
+}
+
+@-moz-keyframes bg-scrolling-reverse {
+  100% { background-position: 50px 50px; }
+}
+
+@-o-keyframes bg-scrolling-reverse {
+  100% { background-position: 50px 50px; }
+}
+
+@keyframes bg-scrolling-reverse {
+  100% { background-position: 50px 50px; }
+}
+
+@-webkit-keyframes bg-scrolling {
+  0% { background-position: 50px 50px; }
+}
+
+@-moz-keyframes bg-scrolling {
+  0% { background-position: 50px 50px; }
+}
+
+@-o-keyframes bg-scrolling {
+  0% { background-position: 50px 50px; }
+}
+
+@keyframes bg-scrolling {
+  0% { background-position: 50px 50px; }
+}
+
+.bg-animated-grids {
+  /* img size is 50x50 */
+  background: url("grids.png") repeat 0 0;
+  -webkit-animation: bg-scrolling-reverse 0.92s infinite;
+  -moz-animation: bg-scrolling-reverse 0.92s infinite;
+  -o-animation: bg-scrolling-reverse 0.92s infinite;
+  /* Opera 12+ */
+  animation: bg-scrolling-reverse 0.92s infinite;
+  /* IE 10+ */
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
