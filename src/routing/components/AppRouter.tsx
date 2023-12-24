@@ -4,9 +4,10 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import {PrivateRoutes} from "@/routing/components/PrivateRoutes.tsx";
 import {HomePage} from "@/public/pages/HomePage.tsx";
 import {LoginPage} from "@/security/pages/LoginPage.tsx";
+import {useUserStore} from "@/security/stores/useUserStore.ts";
 
 export const AppRouter = (): ReactElement => {
-  const userIsLogged = true;
+  const userIsLogged = useUserStore(state => state.user !== null);
 
   return (
     <Routes>
