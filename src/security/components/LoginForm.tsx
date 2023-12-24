@@ -1,10 +1,13 @@
 import {FormEvent, ReactElement, useEffect, useRef, useState} from "react";
 import {toast} from "react-toastify";
 import {getUserInfoByHandle} from "@/security/services/LinkCodeforcesAccountService.ts";
+import {useUserStore} from "@/security/stores/useUserStore.ts";
 
 export const LoginForm = (): ReactElement => {
   const codeforcesHandleRef = useRef<HTMLInputElement>(null);
   const [isFetching, setIsFetching] = useState<boolean>(false);
+
+  const setUser = useUserStore(state => state.setUser);
 
   useEffect(() => {
     codeforcesHandleRef.current?.focus();
@@ -22,7 +25,7 @@ export const LoginForm = (): ReactElement => {
 
     getUserInfoByHandle(codeforcesHandleRef.current.value)
       .then((res) => {
-        console.log(res.data.result);
+        setUser(res.data.result[0]);
         toast.update(
           toastId,
           {
