@@ -4,11 +4,20 @@ import '@/index.css';
 
 import {AppRouter} from "@/routing/components/AppRouter.tsx";
 import {BrowserRouter} from "react-router-dom";
+import {PrimeReactProvider} from "primereact/api";
+
+import "primereact/resources/themes/lara-light-cyan/theme.css";
+
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <AppRouter />
-    </BrowserRouter>
+    <PrimeReactProvider>
+      <BrowserRouter>
+        <AppRouter />
+        <ToastContainer />
+      </BrowserRouter>
+    </PrimeReactProvider>
   </React.StrictMode>,
 );

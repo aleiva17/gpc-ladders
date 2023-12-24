@@ -1,17 +1,50 @@
-import {ReactElement, useEffect, useRef} from "react";
+import {FormEvent, ReactElement, useEffect, useRef, useState} from "react";
+import {toast} from "react-toastify";
+import {getUserInfoByHandle} from "@/security/services/LinkCodeforcesAccountService.ts";
 
 export const LoginForm = (): ReactElement => {
   const codeforcesHandleRef = useRef<HTMLInputElement>(null);
+  const [isFetching, setIsFetching] = useState<boolean>(false);
 
   useEffect(() => {
     codeforcesHandleRef.current?.focus();
   }, []);
 
-  const handleLink = (): void => {
-    if (!codeforcesHandleRef.current || codeforcesHandleRef.current.value.length === 0) {
+  const handleLink = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+
+    if (isFetching || !codeforcesHandleRef.current || codeforcesHandleRef.current.value.length === 0) {
       return;
     }
 
+    const toastId = toast.loading("Searching user");
+    setIsFetching(true);
+
+    getUserInfoByHandle(codeforcesHandleRef.current.value)
+      .then((res) => {
+        console.log(res.data.result);
+        toast.update(
+          toastId,
+          {
+            render: "Data retrieved successfully",
+            type: "success",
+            isLoading: false,
+            autoClose: 3000
+          }
+        );
+      })
+      .catch((error) => {
+        toast.update(
+          toastId,
+          {
+            render: `Error: ${error.response.data["comment"]}`,
+            type: "error",
+            isLoading: false,
+            autoClose: 3000
+          }
+        );
+      })
+      .finally(() => setIsFetching(false));
   }
 
   return (
@@ -26,7 +59,10 @@ export const LoginForm = (): ReactElement => {
         <p className="text-5xl font-bold text-center text-darkest dark:text-light mt-3 mb-1">Login</p>
         <p className="text-center font-semibold text-lg text-complementary-light dark:text-complementary-dark">Welcome back!</p>
       </section>
-      <section className="flex flex-col text-complementary-light dark:text-complementary-dark">
+      <form
+        onSubmit={ handleLink }
+        className="flex flex-col text-complementary-light dark:text-complementary-dark"
+      >
         <span className="font-semibold">Codeforces handle</span>
 
         <div
@@ -35,7 +71,7 @@ export const LoginForm = (): ReactElement => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"/>
           </svg>
           <input
-            ref={codeforcesHandleRef}
+            ref={ codeforcesHandleRef }
             type="text"
             className="w-full text-lg outline-none bg-transparent text-darkest dark:text-light border-none"
             placeholder="Username"
@@ -44,11 +80,12 @@ export const LoginForm = (): ReactElement => {
 
         <button
           className="bg-gpc-purple dark:bg-gpc-aqua hover:bg-gpc-purple-darker dark:hover:bg-gpc-aqua-darker duration-300 rounded-lg text-white font-semibold mt-4 px-4 py-2"
-          onClick={handleLink}
+          type="submit"
+          disabled={ isFetching }
         >
           Link account
         </button>
-      </section>
+      </form>
     </div>
   );
 };
