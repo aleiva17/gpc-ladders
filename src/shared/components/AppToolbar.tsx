@@ -2,9 +2,10 @@ import {ReactElement} from "react";
 import {Link} from "react-router-dom";
 import {AvatarDropdown} from "@/shared/components/AvatarDropdown.tsx";
 import {RoundedThemeSwitcher} from "@/shared/components/RoundedThemeSwitcher.tsx";
+import {useUserStore} from "@/security/stores/useUserStore.ts";
 
 export const AppToolbar = (): ReactElement => {
-  const userIsLogged = false;
+  const userIsLogged = useUserStore(state => state.user !== null);
 
   return (
     <header className="sticky flex justify-between md:justify-around items-center dark:bg-darkest top-0 p-4">
