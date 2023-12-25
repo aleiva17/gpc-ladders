@@ -5,7 +5,7 @@ import {RoundedThemeSwitcher} from "@/shared/components/RoundedThemeSwitcher.tsx
 import {useUserStore} from "@/security/stores/useUserStore.ts";
 
 export const AppToolbar = (): ReactElement => {
-  const userIsLogged = useUserStore(state => state.user !== null);
+  const user = useUserStore(state => state.user);
 
   return (
     <header className="sticky flex justify-between md:justify-around items-center dark:bg-darkest top-0 p-4">
@@ -18,8 +18,8 @@ export const AppToolbar = (): ReactElement => {
         <span className="font-extrabold text-xl md:text-4xl">GPC Ladders</span>
       </Link>
       {
-        userIsLogged
-          ? <AvatarDropdown />
+        user !== null
+          ? <AvatarDropdown user={user} />
           : <RoundedThemeSwitcher />
       }
     </header>
