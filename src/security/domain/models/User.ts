@@ -13,4 +13,5 @@ export interface User {
   rating: number;
   registrationTimeSeconds: number;
   titlePhoto: string;
+  preferredProfilePicture?:  string;
 }
