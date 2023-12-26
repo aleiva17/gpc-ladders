@@ -3,13 +3,8 @@ import {useState, useEffect, Dispatch, SetStateAction} from "react";
 type Theme = "light" | "dark";
 
 export const useTheme = (): [Theme, Dispatch<SetStateAction<Theme>>] => {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>(localStorage.getItem("theme") as Theme ?? "light");
   const prevTheme: Theme = (theme === "light" ? "dark" : "light");
-
-  useEffect(() => {
-    const userTheme = localStorage.getItem("theme");
-    userTheme && setTheme(userTheme as Theme);
-  }, []);
 
   useEffect(() => {
     const root = window.document.documentElement;
