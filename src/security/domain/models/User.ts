@@ -14,4 +14,5 @@ export interface User {
   registrationTimeSeconds: number;
   titlePhoto: string;
   preferredProfilePicture?:  string;
+  preferredHandle?: string;
 }
