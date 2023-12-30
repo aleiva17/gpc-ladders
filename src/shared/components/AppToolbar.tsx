@@ -8,7 +8,7 @@ export const AppToolbar = (): ReactElement => {
   const user = useUserStore(state => state.user);
 
   return (
-    <header className="sticky flex justify-between md:justify-around items-center dark:bg-darkest top-0 p-4">
+    <header className="sticky flex justify-between md:justify-around items-center bg-white dark:bg-darkest top-0 z-20 p-4">
       <Link to="/" className="flex justify-center items-center hover:scale-95 duration-300 gap-2">
         <img
           src="/gpc-logo.png"
