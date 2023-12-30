@@ -3,12 +3,15 @@ import {Menu, Transition} from '@headlessui/react';
 import {User} from "@/security/domain/models/User.ts";
 import {dropdownMenuItemList} from "@/shared/data/dropdownMenuItemList.ts";
 import {MenuItemProps} from "@/shared/prefabs/navigation-menu-items/utils.ts";
+import {NormalizeHandlePipe} from "@/shared/pipes/NormalizeHandlePipe.ts";
 
 type AvatarDropdownProps = {
   user: User
 }
 
 export const AvatarDropdown = ({ user }: AvatarDropdownProps): ReactElement => {
+  const displayableName = user.preferredHandle ?? NormalizeHandlePipe.transform(user.handle);
+
   return (
     <Menu as="div" className="relative">
       <Menu.Button className="flex justify-center items-center group gap-2">
@@ -19,7 +22,7 @@ export const AvatarDropdown = ({ user }: AvatarDropdownProps): ReactElement => {
           </div>
         </div>
         <span className="hidden md:flex font-semibold text-slate-900 dark:text-light group-hover:text-gpc-purple dark:group-hover:text-gpc-aqua duration-300">
-          { user.handle }
+          { displayableName }
         </span>
       </Menu.Button>
       <Transition
