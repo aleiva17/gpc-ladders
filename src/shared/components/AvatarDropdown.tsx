@@ -18,7 +18,7 @@ export const AvatarDropdown = ({ user }: AvatarDropdownProps): ReactElement => {
         <div className="h-10 w-10 overflow-hidden rounded-full border-2 border-slate-900 dark:border-light group-hover:border-gpc-purple dark:group-hover:border-gpc-aqua duration-300">
           <div
             style={{ backgroundImage: `url(${ user.preferredProfilePicture ?? user.avatar })`}}
-            className="h-full w-auto bg-center bg-contain bg-no-repeat">
+            className="h-full w-auto bg-center bg-cover bg-no-repeat">
           </div>
         </div>
         <span className="hidden md:flex font-semibold text-slate-900 dark:text-light group-hover:text-gpc-purple dark:group-hover:text-gpc-aqua duration-300">
@@ -42,7 +42,7 @@ export const AvatarDropdown = ({ user }: AvatarDropdownProps): ReactElement => {
                 {
                   group.map((ElementStrategy, index) =>
                     <Menu.Item key={index}>
-                      {({ active }) => <ElementStrategy active={active} />}
+                      {({active}) => <ElementStrategy active={active}/>}
                     </Menu.Item>
                   )
                 }
