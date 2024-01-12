@@ -6,6 +6,7 @@ import {HomePage} from "@/public/pages/HomePage.tsx";
 import {LoginPage} from "@/security/pages/LoginPage.tsx";
 import {useUserStore} from "@/security/stores/useUserStore.ts";
 import {useTheme} from "@/shared/hooks/useTheme.tsx";
+import {SettingsPage} from "@/settings/pages/SettingsPage.tsx";
 
 export const AppRouter = (): ReactElement => {
   const userIsLogged = useUserStore(state => state.user !== null);
@@ -15,6 +16,7 @@ export const AppRouter = (): ReactElement => {
     <Routes>
       <Route element={ <PrivateRoutes canActivate={ userIsLogged } defaultDestination={"/login"} /> }>
         <Route path="/" element={ <HomePage /> } />
+        <Route path="/settings" element={ <SettingsPage /> } />
       </Route>
       <Route
         path="login"

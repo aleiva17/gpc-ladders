@@ -1,8 +1,4 @@
-
-export type AppIconGroup = {
-  name: string;
-  icons: Array<string>;
-}
+import {AppIconGroup} from "@/settings/domain/model/AppIconGroup.ts";
 
 export const appIconGroups: Array<AppIconGroup> = [
   {
