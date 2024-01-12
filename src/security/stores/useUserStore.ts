@@ -6,6 +6,8 @@ export type UserState = {
   user: User | null;
   setUser: (newUser: User) => void;
   removeUser: () => void;
+  setPreferredHandle: (preferredHandle: string | undefined) => void;
+  setPreferredProfilePicture: (preferredProfilePicture: string | undefined) => void;
 }
 
 export const useUserStore = create<UserState>()(persist(((set) => ({
@@ -16,6 +18,18 @@ export const useUserStore = create<UserState>()(persist(((set) => ({
   removeUser: () => set(() => ({
     user: null
   })),
+  setPreferredHandle: (preferredHandle: string | undefined) => set(({ user }) => ({
+    user: {
+      ...user!,
+      preferredHandle: preferredHandle
+    }
+  })),
+  setPreferredProfilePicture: (profilePicture: string | undefined) => set(({ user }) => ({
+    user: {
+      ...user!,
+      preferredProfilePicture: profilePicture
+    }
+  }))
 })), {
   name: "user"
 }))
