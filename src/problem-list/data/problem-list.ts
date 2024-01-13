@@ -29,4 +29,4 @@ export const problemList: Array<ProblemList> = [
     imgUrl: "https://static-cdn.jtvnw.net/jtv_user_pictures/d978f998-edd5-4fbc-8815-15b12ea7bf24-profile_image-150x150.png",
     tags: ["Advanced", "Data Structures", "By topic"]
   }
-];
+] as const;
