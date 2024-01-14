@@ -4,13 +4,12 @@ import {problemList} from "@/problem-list/data/problem-list.ts";
 import {ProblemListCard} from "@/problem-list/components/ProblemListCard.tsx";
 import {BaseLayout} from "@/shared/layouts/BaseLayout.tsx";
 
-export const ProblemListPage = (): ReactElement => {
+export const ListOfProblemGroupsPage = (): ReactElement => {
   return (
     <BaseLayout>
       <div className="flex justify-center">
         <div className="flex flex-col max-w-screen-xl p-6">
-          <h1 className="text-5xl font-bold border-b-2 border-complementary-light dark:border-complementary-dark w-fit py-4 self-center text-center">Problem
-            list</h1>
+          <h1 className="text-5xl font-bold border-b-2 border-complementary-light dark:border-complementary-dark w-fit py-4 self-center text-center">Problem list</h1>
           <Link
             to="/"
             className="group flex items-center hover:text-gpc-purple dark:hover:text-gpc-aqua font-semibold gap-1 text-lg w-fit mt-12 mb-8"

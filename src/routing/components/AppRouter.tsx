@@ -7,7 +7,7 @@ import {LoginPage} from "@/security/pages/LoginPage.tsx";
 import {useUserStore} from "@/security/stores/useUserStore.ts";
 import {useTheme} from "@/shared/hooks/useTheme.tsx";
 import {SettingsPage} from "@/settings/pages/SettingsPage.tsx";
-import {ProblemListPage} from "@/problem-list/pages/ProblemListPage.tsx";
+import {ListOfProblemGroupsPage} from "@/problem-list/pages/ListOfProblemGroupsPage.tsx";
 import {ProblemGroupPage} from "@/problem-list/pages/ProblemGroupPage.tsx";
 
 export const AppRouter = (): ReactElement => {
@@ -20,7 +20,7 @@ export const AppRouter = (): ReactElement => {
         <Route path="/" element={ <HomePage /> } />
         <Route path="/settings" element={ <SettingsPage /> } />
         <Route path="/problem-list">
-          <Route path="" element={ <ProblemListPage /> } />
+          <Route path="" element={ <ListOfProblemGroupsPage /> } />
           <Route path=":groupId" element={ <ProblemGroupPage /> } />
         </Route>
       </Route>
