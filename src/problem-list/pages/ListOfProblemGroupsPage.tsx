@@ -1,7 +1,7 @@
 import {ReactElement} from "react";
 import {Link} from "react-router-dom";
-import {problemList} from "@/problem-list/data/problem-list.ts";
-import {ProblemListCard} from "@/problem-list/components/ProblemListCard.tsx";
+import {problemGroups} from "@/problem-list/data/problem-groups.ts";
+import {ProblemGroupCard} from "@/problem-list/components/ProblemGroupCard.tsx";
 import {BaseLayout} from "@/shared/layouts/BaseLayout.tsx";
 
 export const ListOfProblemGroupsPage = (): ReactElement => {
@@ -23,10 +23,10 @@ export const ListOfProblemGroupsPage = (): ReactElement => {
           </Link>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {
-              problemList.map(list =>
-                <ProblemListCard
-                  key={list.id}
-                  problemList={list}
+              problemGroups.map(group =>
+                <ProblemGroupCard
+                  key={group.id}
+                  problemList={group}
                 />
               )
             }

@@ -1,19 +1,40 @@
 import {ReactElement} from "react";
+import {ProblemGroup} from "@/problem-list/domain/model/ProblemGroup.ts";
 import {Link} from "react-router-dom";
 
-type ProblemGroupCardProps = {
-  id: string;
-  name: string;
+type ProblemListCardProps = {
+  problemList: ProblemGroup;
 }
 
-export const ProblemGroupCard = ({ id, name }: ProblemGroupCardProps): ReactElement => {
+export const ProblemGroupCard = ({ problemList }: ProblemListCardProps): ReactElement => {
+  const { id, description, title, tags, imgUrl } = problemList;
+
   return (
     <Link
-      to={id}
-      className="group bg-gray-200 dark:bg-complementary-light hover:bg-gpc-purple dark:hover:bg-gpc-aqua font-bold rounded-xl drop-shadow-md text-3xl p-4"
+      to={`/problem-list/${id}`}
+      className="flex flex-col md:flex-row gap-4 bg-white dark:bg-darkest rounded-2xl p-6 shadow-lg hover:scale-[1.03] items-center duration-300"
     >
-      <p className="text-gpc-purple dark:text-gpc-aqua group-hover:text-green-500 dark:group-hover:text-dark mb-6">+</p>
-      <h2 className="uppercase group-hover:text-white">{name}</h2>
+      <img
+        src={imgUrl}
+        alt={`${title} icon`}
+        className="h-32 w-32 rounded-full border-2 border-complementary-light dark:border-complementary-dark p-1"
+      />
+      <div className="grid grid-rows-[auto_1fr_auto] gap-2">
+        <p className="font-bold text-darkest dark:text-light text-lg">{title}</p>
+        <p className="text-complementary-light dark:text-complementary-dark">{description}</p>
+        <div className="flex flex-wrap items-center gap-2">
+          {
+            tags.map((tag, it) =>
+              <span
+                key={it}
+                className="font-medium text-center px-2 py-0.5 bg-black dark:bg-gray-500 bg-opacity-10 rounded-md"
+              >
+                { tag }
+              </span>
+            )
+          }
+        </div>
+      </div>
     </Link>
   );
 };

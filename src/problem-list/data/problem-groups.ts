@@ -1,6 +1,6 @@
-import {ProblemList} from "@/problem-list/domain/model/ProblemList.ts";
+import {ProblemGroup} from "@/problem-list/domain/model/ProblemGroup.ts";
 
-export const problemList: Array<ProblemList> = [
+export const problemGroups: Array<ProblemGroup> = [
   {
     id: "a2oj",
     title: "Classic A2OJ",

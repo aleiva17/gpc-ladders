@@ -2,13 +2,13 @@ import {ReactElement, useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {BaseLayout} from "@/shared/layouts/BaseLayout.tsx";
 import {problemGroupList, ProblemGroupListContent} from "@/problem-list/data/problem-group-list.ts";
-import {ProblemGroup} from "@/problem-list/domain/model/ProblemGroup.ts";
-import {ProblemGroupCard} from "@/problem-list/components/ProblemGroupCard.tsx";
+import {ProblemGroupDetail} from "@/problem-list/domain/model/ProblemGroupDetail.ts";
+import {ProblemListCard} from "@/problem-list/components/ProblemListCard.tsx";
 
 export const ProblemGroupPage = (): ReactElement => {
   const { groupId } = useParams();
   const navigate = useNavigate();
-  const [problemGroup, setProblemGroup] = useState<ProblemGroup | undefined>();
+  const [problemGroup, setProblemGroup] = useState<ProblemGroupDetail | undefined>();
 
   useEffect(() => {
     if (!Object.keys(problemGroupList).includes(groupId!)) {
@@ -34,11 +34,11 @@ export const ProblemGroupPage = (): ReactElement => {
           </Link>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {
-              problemGroup?.problems.map(problem =>
-                <ProblemGroupCard
-                  key={problem.id}
-                  id={problem.id}
-                  name={problem.name}
+              problemGroup?.problems.map(list =>
+                <ProblemListCard
+                  key={list.id}
+                  id={list.id}
+                  name={list.name}
                 />
               )
             }

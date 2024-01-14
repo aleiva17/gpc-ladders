@@ -1,11 +1,11 @@
-import {ProblemGroup} from "@/problem-list/domain/model/ProblemGroup.ts";
+import {ProblemGroupDetail} from "@/problem-list/domain/model/ProblemGroupDetail.ts";
 
 
 export type ProblemGroupListContent = {
-  "a2oj": ProblemGroup;
-  "colin-galen": ProblemGroup;
-  "rmg": ProblemGroup;
-  "racso": ProblemGroup;
+  "a2oj": ProblemGroupDetail;
+  "colin-galen": ProblemGroupDetail;
+  "rmg": ProblemGroupDetail;
+  "racso": ProblemGroupDetail;
 }
 
 export const problemGroupList: ProblemGroupListContent = {
