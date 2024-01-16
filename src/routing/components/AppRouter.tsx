@@ -9,6 +9,7 @@ import {useTheme} from "@/shared/hooks/useTheme.tsx";
 import {SettingsPage} from "@/settings/pages/SettingsPage.tsx";
 import {ListOfProblemGroupsPage} from "@/problem-list/pages/ListOfProblemGroupsPage.tsx";
 import {ProblemGroupPage} from "@/problem-list/pages/ProblemGroupPage.tsx";
+import {ProblemListPage} from "@/problem-list/pages/ProblemListPage.tsx";
 
 export const AppRouter = (): ReactElement => {
   const userIsLogged = useUserStore(state => state.user !== null);
@@ -22,6 +23,7 @@ export const AppRouter = (): ReactElement => {
         <Route path="/problem-list">
           <Route path="" element={ <ListOfProblemGroupsPage /> } />
           <Route path=":groupId" element={ <ProblemGroupPage /> } />
+          <Route path=":groupId/:listId" element={ <ProblemListPage /> } />
         </Route>
       </Route>
       <Route
