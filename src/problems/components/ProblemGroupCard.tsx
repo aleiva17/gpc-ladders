@@ -1,5 +1,5 @@
 import {ReactElement} from "react";
-import {ProblemGroup} from "@/problem-list/domain/model/ProblemGroup.ts";
+import {ProblemGroup} from "@/problems/domain/model/ProblemGroup.ts";
 import {Link} from "react-router-dom";
 
 type ProblemListCardProps = {

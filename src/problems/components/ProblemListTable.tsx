@@ -1,12 +1,12 @@
 import {ReactElement, useState} from "react";
 import {Column} from "primereact/column";
 import {DataTable, DataTableFilterMeta} from "primereact/datatable";
-import {Problem} from "@/problem-list/domain/model/Problem.ts";
-import {ActionTemplate} from "@/problem-list/components/problemListTableTemplates/ActionTemplate.tsx";
-import {TagsTemplate} from "@/problem-list/components/problemListTableTemplates/TagsTemplate.tsx";
-import {TagRowFilterTemplate} from "@/problem-list/components/problemListTableTemplates/TagRowFilterTemplate.tsx";
+import {Problem} from "@/problems/domain/model/Problem.ts";
+import {ActionTemplate} from "@/problems/components/problemListTableTemplates/ActionTemplate.tsx";
+import {TagsTemplate} from "@/problems/components/problemListTableTemplates/TagsTemplate.tsx";
+import {TagRowFilterTemplate} from "@/problems/components/problemListTableTemplates/TagRowFilterTemplate.tsx";
 import {FilterMatchMode} from "primereact/api";
-import {getAllUniqueTagsFromProblems} from "@/problem-list/services/TagService.ts";
+import {getAllUniqueTagsFromProblems} from "@/problems/services/TagService.ts";
 
 type ProblemListTableProps = {
   problems: Array<Problem>

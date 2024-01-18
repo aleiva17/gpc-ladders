@@ -1,4 +1,4 @@
-import {ProblemListDetail} from "@/problem-list/domain/model/ProblemListDetail.ts";
+import {ProblemListDetail} from "@/problems/domain/model/ProblemListDetail.ts";
 
 type ProblemListContent = {
   [key: string]: ProblemListDetail

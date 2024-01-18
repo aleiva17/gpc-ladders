@@ -7,7 +7,7 @@ export const FeatureList = (): ReactElement => {
       <FeatureLinkCard
         destination="/problem-list"
         logoUrl="/training.png" logoAlt="Training logo"
-        title="ProblemList list"
+        title="Problem list"
         description="Access a bunch of problems grouped by topics and rating level from different experts."
       />
       <FeatureLinkCard

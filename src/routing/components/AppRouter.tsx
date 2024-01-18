@@ -7,9 +7,9 @@ import {LoginPage} from "@/security/pages/LoginPage.tsx";
 import {useUserStore} from "@/security/stores/useUserStore.ts";
 import {useTheme} from "@/shared/hooks/useTheme.tsx";
 import {SettingsPage} from "@/settings/pages/SettingsPage.tsx";
-import {ListOfProblemGroupsPage} from "@/problem-list/pages/ListOfProblemGroupsPage.tsx";
-import {ProblemGroupPage} from "@/problem-list/pages/ProblemGroupPage.tsx";
-import {ProblemListPage} from "@/problem-list/pages/ProblemListPage.tsx";
+import {ListOfProblemGroupsPage} from "@/problems/pages/ListOfProblemGroupsPage.tsx";
+import {ProblemGroupPage} from "@/problems/pages/ProblemGroupPage.tsx";
+import {ProblemListPage} from "@/problems/pages/ProblemListPage.tsx";
 
 export const AppRouter = (): ReactElement => {
   const userIsLogged = useUserStore(state => state.user !== null);

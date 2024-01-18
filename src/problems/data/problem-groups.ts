@@ -1,4 +1,4 @@
-import {ProblemGroup} from "@/problem-list/domain/model/ProblemGroup.ts";
+import {ProblemGroup} from "@/problems/domain/model/ProblemGroup.ts";
 
 export const problemGroups: Array<ProblemGroup> = [
   {

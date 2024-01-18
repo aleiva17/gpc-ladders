@@ -1,4 +1,4 @@
-import {ProblemGroupDetail} from "@/problem-list/domain/model/ProblemGroupDetail.ts";
+import {ProblemGroupDetail} from "@/problems/domain/model/ProblemGroupDetail.ts";
 
 
 export type ProblemGroupListContent = {

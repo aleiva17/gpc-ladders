@@ -1,4 +1,4 @@
-import {ProblemList} from "@/problem-list/domain/model/ProblemList.ts";
+import {ProblemList} from "@/problems/domain/model/ProblemList.ts";
 
 export interface ProblemGroupDetail {
   name: string;

@@ -1,7 +1,7 @@
 import {ReactElement} from "react";
 import {Link} from "react-router-dom";
-import {problemGroups} from "@/problem-list/data/problem-groups.ts";
-import {ProblemGroupCard} from "@/problem-list/components/ProblemGroupCard.tsx";
+import {problemGroups} from "@/problems/data/problem-groups.ts";
+import {ProblemGroupCard} from "@/problems/components/ProblemGroupCard.tsx";
 import {BaseLayout} from "@/shared/layouts/BaseLayout.tsx";
 
 export const ListOfProblemGroupsPage = (): ReactElement => {

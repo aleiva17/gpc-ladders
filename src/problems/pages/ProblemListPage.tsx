@@ -1,10 +1,10 @@
 import {ReactElement, useEffect, useState} from "react";
 import {BaseLayout} from "@/shared/layouts/BaseLayout.tsx";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {problemGroupList} from "@/problem-list/data/problem-group-list.ts";
-import {problemLists} from "@/problem-list/data/problem-lists.ts";
-import {ProblemListDetail} from "@/problem-list/domain/model/ProblemListDetail.ts";
-import {ProblemListTable} from "@/problem-list/components/ProblemListTable.tsx";
+import {problemGroupList} from "@/problems/data/problem-group-list.ts";
+import {problemLists} from "@/problems/data/problem-lists.ts";
+import {ProblemListDetail} from "@/problems/domain/model/ProblemListDetail.ts";
+import {ProblemListTable} from "@/problems/components/ProblemListTable.tsx";
 
 export const ProblemListPage = (): ReactElement => {
   const { groupId, listId } = useParams();
