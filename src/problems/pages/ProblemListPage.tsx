@@ -1,15 +1,34 @@
 import {ReactElement, useEffect, useState} from "react";
 import {BaseLayout} from "@/shared/layouts/BaseLayout.tsx";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {problemGroupList} from "@/problems/data/problem-group-list.ts";
 import {problemLists} from "@/problems/data/problem-lists.ts";
-import {ProblemListDetail} from "@/problems/domain/model/ProblemListDetail.ts";
 import {ProblemListTable} from "@/problems/components/ProblemListTable.tsx";
+import {useUserStore} from "@/security/stores/useUserStore.ts";
+import {useSubmissions} from "@/problems/hooks/useSubmissions.tsx";
+import {ProgressBar} from "primereact/progressbar";
+import {GoBackButton} from "@/shared/components/GoBackButton.tsx";
+import {getFilterableProblemsFromProblemSubmissions} from "@/problems/services/SubmissionService.ts";
+import {FilterableProblem} from "@/problems/domain/model/FilterableProblem.ts";
 
 export const ProblemListPage = (): ReactElement => {
+  const user = useUserStore(state => state.user);
   const { groupId, listId } = useParams();
   const navigate = useNavigate();
-  const [problemList, setProblemList] = useState<ProblemListDetail | undefined>(undefined);
+
+  const [title, setTitle] = useState<string>("");
+  const [problems, setProblems] = useState<Array<FilterableProblem>>([]);
+  const {
+    acceptedSubmissions,
+    wrongSubmissions,
+  } = useSubmissions({
+    username: user!.handle,
+    onError: console.log
+  });
+
+  const countOfSolvedProblems = problems.filter(
+    problem => acceptedSubmissions?.has(`${problem.contestId}${problem.index}`)
+  ).length || 0;
 
   useEffect(() => {
     const key = `${groupId}-${listId}`;
@@ -18,25 +37,25 @@ export const ProblemListPage = (): ReactElement => {
       navigate("/error-404");
       return;
     }
-    setProblemList(problemLists[key]);
-  }, [groupId, listId, navigate]);
+
+    setTitle(problemLists[key].title);
+    setProblems(getFilterableProblemsFromProblemSubmissions(problemLists[key].problems, acceptedSubmissions, wrongSubmissions));
+  }, [groupId, listId, navigate, acceptedSubmissions, wrongSubmissions]);
 
   return (
     <BaseLayout>
       <div className="flex justify-center">
         <div className="flex flex-col w-full max-w-screen-xl p-6">
-          <h1
-            className="text-5xl font-bold border-b-2 border-complementary-light dark:border-complementary-dark w-fit py-4 self-center text-center">{problemList?.title}</h1>
-          <Link
-            to={`/problem-list/${groupId}`}
-            className="group flex items-center hover:text-gpc-purple dark:hover:text-gpc-aqua font-semibold gap-1 text-lg w-fit mt-12 mb-8"
-          >
-            <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            <span>Go back</span>
-          </Link>
-          <ProblemListTable problems={problemList?.problems ?? []} />
+          <h1 className="text-5xl font-bold border-b-2 border-complementary-light dark:border-complementary-dark w-fit py-4 self-center text-center">{ title.length > 0 && title }</h1>
+          <GoBackButton destination={`/problem-list/${groupId}`} />
+          <ProgressBar
+            value={ 100.0 * countOfSolvedProblems / problems.length }
+            className="mb-4"
+            displayValueTemplate={
+              () => <span>{countOfSolvedProblems}/{problems.length}</span>
+            }
+          />
+          <ProblemListTable problems={problems} />
         </div>
       </div>
     </BaseLayout>

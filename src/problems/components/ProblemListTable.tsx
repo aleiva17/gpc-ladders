@@ -7,17 +7,22 @@ import {TagsTemplate} from "@/problems/components/problemListTableTemplates/Tags
 import {TagRowFilterTemplate} from "@/problems/components/problemListTableTemplates/TagRowFilterTemplate.tsx";
 import {FilterMatchMode} from "primereact/api";
 import {getAllUniqueTagsFromProblems} from "@/problems/services/TagService.ts";
+import {StatusTemplate} from "@/problems/components/problemListTableTemplates/StatusTemplate.tsx";
+import {StatusRowFilterTemplate} from "@/problems/components/problemListTableTemplates/StatusRowFilterTemplate.tsx";
+import {FilterableProblem} from "@/problems/domain/model/FilterableProblem.ts";
 
 type ProblemListTableProps = {
-  problems: Array<Problem>
+  problems: Array<FilterableProblem>;
 }
+
 // TODO: Fix multiple filtering on tags
+// TODO: Fix multiple filtering on status
 export const ProblemListTable = ({ problems }: ProblemListTableProps): ReactElement => {
   const allTags = getAllUniqueTagsFromProblems(problems).sort();
   const [filters] = useState<DataTableFilterMeta>({
     title: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
     tags: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    status: { value: null, matchMode: FilterMatchMode.EQUALS }
+    status: { value: null, matchMode: FilterMatchMode.IN }
   });
 
   return (
@@ -59,8 +64,16 @@ export const ProblemListTable = ({ problems }: ProblemListTableProps): ReactElem
             body={(problem: Problem) => TagsTemplate(problem.tags)}
           />
           <Column
-            field="category"
+            field="status"
+            style={{ width: '20%' }}
             header="Status"
+            filterMenuStyle={{ width: '4rem' }}
+            filter
+            showFilterOperator={true}
+            filterElement={StatusRowFilterTemplate}
+            filterField="status"
+            showFilterMenu={false}
+            body={StatusTemplate}
           />
           <Column
             align="center"
