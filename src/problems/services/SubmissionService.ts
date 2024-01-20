@@ -1,5 +1,7 @@
 import axios from "axios";
 import {Submission} from "@/problems/domain/model/Submission.ts";
+import {FilterableProblem, ProblemStatus} from "@/problems/domain/model/FilterableProblem.ts";
+import {Problem} from "@/problems/domain/model/Problem.ts";
 
 const instance = axios.create({
   baseURL: "https://codeforces.com/api/",
@@ -49,4 +51,25 @@ export const getSetsOfSubmissionsFilteredByStatus = (submissions: Array<Submissi
   });
 
   return { acceptedSubmissions, wrongSubmissions };
+}
+
+export const getFilterableProblemsFromProblemSubmissions = (problems: Array<Problem>, acceptedSubmissions: Set<string>, wrongSubmissions: Set<string>): Array<FilterableProblem> => {
+  const filterableProblems: Array<FilterableProblem> = [];
+
+  const getStatus = (id: string): ProblemStatus => {
+    if (acceptedSubmissions.has(id)) return "Accepted";
+    if (wrongSubmissions.has(id)) return "Wrong answer";
+    return "Pending";
+  }
+
+  problems.forEach(problem => {
+    const id = `${problem.contestId}${problem.index}`;
+
+    filterableProblems.push({
+      ...problem,
+      status: getStatus(id)
+    })
+  });
+
+  return filterableProblems;
 }
