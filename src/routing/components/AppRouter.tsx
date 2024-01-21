@@ -10,6 +10,7 @@ import {SettingsPage} from "@/settings/pages/SettingsPage.tsx";
 import {ListOfProblemGroupsPage} from "@/problems/pages/ListOfProblemGroupsPage.tsx";
 import {ProblemGroupPage} from "@/problems/pages/ProblemGroupPage.tsx";
 import {ProblemListPage} from "@/problems/pages/ProblemListPage.tsx";
+import {CopyTrainingPage} from "@/copy-training/pages/CopyTrainingPage.tsx";
 
 export const AppRouter = (): ReactElement => {
   const userIsLogged = useUserStore(state => state.user !== null);
@@ -25,6 +26,7 @@ export const AppRouter = (): ReactElement => {
           <Route path=":groupId" element={ <ProblemGroupPage /> } />
           <Route path=":groupId/:listId" element={ <ProblemListPage /> } />
         </Route>
+        <Route path="/copy-training" element={ <CopyTrainingPage /> } />
       </Route>
       <Route
         path="login"
