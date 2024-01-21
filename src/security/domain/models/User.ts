@@ -1,3 +1,4 @@
+import {Rank} from "@/security/domain/models/Rank.ts";
 
 export interface User {
   avatar: string;
@@ -6,10 +7,10 @@ export interface User {
   friendOfCount: number;
   handle: string;
   lastOnlineTimeSeconds: number;
-  maxRank: string;
+  maxRank: Rank;
   maxRating: number;
   organization: string;
-  rank: string;
+  rank: Rank;
   rating: number;
   registrationTimeSeconds: number;
   titlePhoto: string;
