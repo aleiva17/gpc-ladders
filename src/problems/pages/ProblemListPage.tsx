@@ -6,10 +6,10 @@ import {problemLists} from "@/problems/data/problem-lists.ts";
 import {ProblemListTable} from "@/problems/components/ProblemListTable.tsx";
 import {useUserStore} from "@/security/stores/useUserStore.ts";
 import {useSubmissions} from "@/problems/hooks/useSubmissions.tsx";
-import {ProgressBar} from "primereact/progressbar";
 import {GoBackButton} from "@/shared/components/GoBackButton.tsx";
 import {getFilterableProblemsFromProblemSubmissions} from "@/problems/services/SubmissionService.ts";
 import {FilterableProblem} from "@/problems/domain/model/FilterableProblem.ts";
+import {ProblemListProgressBar} from "@/problems/components/ProblemListProgressBar.tsx";
 
 export const ProblemListPage = (): ReactElement => {
   const user = useUserStore(state => state.user);
@@ -46,14 +46,11 @@ export const ProblemListPage = (): ReactElement => {
     <BaseLayout>
       <div className="flex justify-center">
         <div className="flex flex-col w-full max-w-screen-xl p-6">
-          <h1 className="text-5xl font-bold border-b-2 border-complementary-light dark:border-complementary-dark w-fit py-4 self-center text-center">{ title.length > 0 && title }</h1>
+          <h1 className="text-5xl font-bold border-b-2 border-complementary-light dark:border-complementary-dark w-fit py-4 self-center text-center">{ title }</h1>
           <GoBackButton destination={`/problem-list/${groupId}`} />
-          <ProgressBar
-            value={ 100.0 * countOfSolvedProblems / problems.length }
-            className="mb-4"
-            displayValueTemplate={
-              () => <span>{countOfSolvedProblems}/{problems.length}</span>
-            }
+          <ProblemListProgressBar
+            numberOfSolvedProblems={countOfSolvedProblems}
+            totalNumberOfProblems={problems.length}
           />
           <ProblemListTable problems={problems} />
         </div>
