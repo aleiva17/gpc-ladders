@@ -73,3 +73,35 @@ export const getFilterableProblemsFromProblemSubmissions = (problems: Array<Prob
 
   return filterableProblems;
 }
+
+export const getFilterableProblemsFromSubmissions = (submissions: Array<Submission>, acceptedSubmissions: Set<string>, wrongSubmissions: Set<string>): Array<FilterableProblem> => {
+  const filterableProblems: Array<FilterableProblem> = [];
+  const seenProblems: Set<string> = new Set<string>();
+
+  submissions.forEach(submission => {
+    const problem = submission.problem;
+    const id = `${problem.contestId}${problem.index}`;
+
+    if (submission.verdict !== "OK" || seenProblems.has(id)) {
+      return;
+    }
+
+    const status: ProblemStatus = acceptedSubmissions.has(id)
+      ? "Accepted"
+      : wrongSubmissions.has(id)
+        ? "Wrong answer"
+        : "Pending";
+
+    seenProblems.add(id);
+    filterableProblems.push({
+      title: problem.name,
+      tags: problem.tags,
+      rating: problem.rating,
+      contestId: problem.contestId.toString(),
+      index: problem.index,
+      status: status
+    });
+  });
+
+  return filterableProblems;
+}
