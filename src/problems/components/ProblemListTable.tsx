@@ -44,6 +44,7 @@ export const ProblemListTable = ({ problems }: ProblemListTableProps): ReactElem
             sortable
             field="title"
             header="Name"
+            filterHeaderClassName="min-w-[280px]"
             filter
             filterPlaceholder="Search by name"
           />
