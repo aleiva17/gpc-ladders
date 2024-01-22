@@ -1,6 +1,7 @@
 import {ReactElement} from "react";
 import {Submission} from "@/problems/domain/model/Submission.ts";
 import {getSkillsSortedByFrequency} from "@/statistics/services/SkillService.ts";
+import {getUniqueAcceptedSubmissions} from "@/problems/services/SubmissionService.ts";
 
 type TopSkillsStatsProps = {
   submissions: Array<Submission>;
@@ -8,7 +9,7 @@ type TopSkillsStatsProps = {
 }
 
 export const TopSkillsStats = ({submissions, count}: TopSkillsStatsProps): ReactElement => {
-  const skillsStats = getSkillsSortedByFrequency(submissions).slice(0, count);
+  const skillsStats = getSkillsSortedByFrequency(getUniqueAcceptedSubmissions(submissions)).slice(0, count);
 
   return (
     <div>
