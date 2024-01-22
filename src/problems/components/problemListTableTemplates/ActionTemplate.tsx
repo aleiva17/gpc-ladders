@@ -1,5 +1,5 @@
 import {ReactElement} from "react";
-import {Problem} from "@/problem-list/domain/model/Problem.ts";
+import {Problem} from "@/problems/domain/model/Problem.ts";
 
 export const ActionTemplate = (problem: Problem): ReactElement => {
   return (
