@@ -8,7 +8,7 @@ type BaseLayoutProps = {
 export const BaseLayout = ({ children }: BaseLayoutProps): ReactElement => {
   return (
     <div
-      className="grid grid-rows-[auto_1fr] bg-light dark:bg-dark dark:text-white min-h-screen"
+      className="grid grid-rows-[auto_1fr] bg-gray-50 dark:bg-dark dark:text-white min-h-screen"
     >
       <AppToolbar />
       <main>{ children }</main>

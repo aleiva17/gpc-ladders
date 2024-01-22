@@ -8,7 +8,7 @@ type CenteredLayoutProps = {
 export const CenteredLayout = ({ children }: CenteredLayoutProps): ReactElement => {
   return (
     <div
-      className="grid grid-rows-[auto_1fr] bg-light dark:bg-dark dark:text-white min-h-screen"
+      className="grid grid-rows-[auto_1fr] bg-gray-50 dark:bg-dark dark:text-white min-h-screen"
     >
       <AppToolbar />
       <div className="flex justify-center items-center">
