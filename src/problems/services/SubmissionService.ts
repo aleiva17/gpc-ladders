@@ -105,3 +105,46 @@ export const getFilterableProblemsFromSubmissions = (submissions: Array<Submissi
 
   return filterableProblems;
 }
+
+export const getUniqueAcceptedSubmissions = (submissions: Array<Submission>): Array<Submission> => {
+  const result: Array<Submission> = [];
+  const problemsSeen: Set<string> = new Set();
+
+  submissions.forEach(submission => {
+    const id = `${submission.problem.contestId}${submission.problem.index}`;
+
+    if (submission.verdict !== "OK" || problemsSeen.has(id)) {
+      return;
+    }
+
+    result.push(submission);
+    problemsSeen.add(id);
+  });
+
+  return result;
+};
+
+export const getUnsolvedProblems = (submissions: Array<Submission>, wrongAnswer: Set<string>): Array<Problem> => {
+  const result: Array<Problem> = [];
+  const problemsSeen: Set<string> = new Set();
+
+  submissions.forEach(({problem}) => {
+    const id = `${problem.contestId}${problem.index}`;
+
+    if (!wrongAnswer.has(id) || problemsSeen.has(id)) {
+      return;
+    }
+
+    result.push({
+      title: problem.name,
+      tags: problem.tags,
+      rating: problem.rating,
+      contestId: problem.contestId.toString(),
+      index: problem.index,
+    });
+
+    problemsSeen.add(id);
+  });
+
+  return result;
+};
