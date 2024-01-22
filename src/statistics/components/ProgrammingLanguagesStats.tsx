@@ -16,7 +16,7 @@ export const ProgrammingLanguagesStats = ({submissions}: ProgrammingLanguagesSta
         {
           languagesStats.map((stat, id) => (
             <div key={id} className="flex justify-between items-center">
-              <span className="font-medium bg-gray-200 rounded-full px-2 py-0.5">{stat.name}</span>
+              <span className="font-medium bg-gray-200 dark:bg-complementary-dark dark:text-darkest rounded-full px-2 py-0.5">{stat.name}</span>
               <span className="text-xs">{stat.frequency} problem{Math.abs(stat.frequency) !== 1 && 's'} solved</span>
             </div>
           ))

@@ -13,7 +13,7 @@ type UserBasicInfoCardProps = {
 
 export const UserBasicInfoCard = ({user, submissions}: UserBasicInfoCardProps): ReactElement => {
   return (
-    <div className="bg-white w-full max-w-sm rounded-xl drop-shadow p-4 md:p-6">
+    <div className="bg-white dark:bg-darkest w-full max-w-sm rounded-xl drop-shadow p-4 md:p-6">
       <UserSummary user={user}/>
       <hr className="my-4 md:my-6"/>
       <CommunityStats user={user}/>

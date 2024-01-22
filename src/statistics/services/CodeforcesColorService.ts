@@ -18,7 +18,7 @@ export const getColorStyleFromRank = (rank: Rank) => {
 
 export const getContributionColor = (contribution: number) => {
   return contribution === 0
-    ? "text-black"
+    ? "text-black dark:text-white"
     : contribution > 0
       ? "text-green-500"
       : "text-red-500";

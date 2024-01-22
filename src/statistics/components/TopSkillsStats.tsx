@@ -13,10 +13,10 @@ export const TopSkillsStats = ({submissions, count}: TopSkillsStatsProps): React
   return (
     <div>
       <h2 className="font-bold mb-2">Top {count} skills</h2>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap dark:text-darkest gap-2">
         {
           skillsStats.map((stat, id) => (
-            <span key={id} className="font-medium bg-gray-200 rounded-full px-2 py-0.5">{stat.name}</span>
+            <span key={id} className="font-medium bg-gray-200 dark:bg-complementary-dark rounded-full px-2 py-0.5">{stat.name}</span>
           ))
         }
       </div>
