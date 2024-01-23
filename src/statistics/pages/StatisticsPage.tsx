@@ -5,9 +5,8 @@ import {useUserStore} from "@/security/stores/useUserStore.ts";
 import {getSubmissions} from "@/problems/services/SubmissionService.ts";
 import {Submission} from "@/problems/domain/model/Submission.ts";
 import {toast} from "react-toastify";
-import {DetailedUserStats} from "@/statistics/components/DetailedUserStats.tsx";
-import {ComplementaryUserStats} from "@/statistics/components/ComplementaryUserStats.tsx";
 import {ProgressSpinner} from "primereact/progressspinner";
+import {UserStatsContainer} from "@/statistics/components/UserStatsContainer.tsx";
 
 export const StatisticsPage = (): ReactElement => {
   const user = useUserStore(state => state.user)!;
@@ -28,10 +27,7 @@ export const StatisticsPage = (): ReactElement => {
           {
             submissions
               ?
-              <div className="grid grid-cols-1 lg:grid-cols-[384px_1fr] gap-4 lg:gap-6">
-                <ComplementaryUserStats user={user} submissions={submissions}/>
-                <DetailedUserStats submissions={submissions}/>
-              </div>
+              <UserStatsContainer user={user} submissions={submissions} />
               :
               <ProgressSpinner
                 style={{width: '50px', height: '50px'}}
