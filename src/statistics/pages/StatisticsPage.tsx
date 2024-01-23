@@ -7,10 +7,11 @@ import {Submission} from "@/problems/domain/model/Submission.ts";
 import {toast} from "react-toastify";
 import {DetailedUserStats} from "@/statistics/components/DetailedUserStats.tsx";
 import {ComplementaryUserStats} from "@/statistics/components/ComplementaryUserStats.tsx";
+import {ProgressSpinner} from "primereact/progressspinner";
 
 export const StatisticsPage = (): ReactElement => {
   const user = useUserStore(state => state.user)!;
-  const [submissions, setSubmissions] = useState<Array<Submission>>([]);
+  const [submissions, setSubmissions] = useState<Array<Submission> | undefined>(undefined);
 
   useEffect(() => {
     getSubmissions(user.handle)
@@ -24,10 +25,20 @@ export const StatisticsPage = (): ReactElement => {
         <div className="flex flex-col w-full max-w-screen-xl p-6">
           <h1 className="text-5xl font-bold border-b-2 border-complementary-light dark:border-complementary-dark w-fit py-4 self-center text-center">My statistics</h1>
           <GoBackButton destination="/"/>
-          <div className="grid grid-cols-1 lg:grid-cols-[384px_1fr] gap-4 lg:gap-6">
-            <ComplementaryUserStats user={user} submissions={submissions} />
-            <DetailedUserStats submissions={submissions} />
-          </div>
+          {
+            submissions
+              ?
+              <div className="grid grid-cols-1 lg:grid-cols-[384px_1fr] gap-4 lg:gap-6">
+                <ComplementaryUserStats user={user} submissions={submissions}/>
+                <DetailedUserStats submissions={submissions}/>
+              </div>
+              :
+              <ProgressSpinner
+                style={{width: '50px', height: '50px'}}
+                strokeWidth="8"
+                animationDuration=".5s"
+              />
+          }
         </div>
       </div>
     </BaseLayout>
