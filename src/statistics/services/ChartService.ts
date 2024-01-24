@@ -59,7 +59,7 @@ export const getVerdictDataForVerdictRatioChart = (submissions: Array<Submission
   };
 };
 
-export const getTagsDataForTagDoughnutChar = (submissions: Array<Submission>): object => {
+export const getTagsDataForTagDoughnutChart = (submissions: Array<Submission>): object => {
   const skillStats = getSkillsSortedByFrequency(submissions);
   const tags = skillStats.map(skill => skill.name);
   const data = skillStats.map(skill => skill.frequency);
