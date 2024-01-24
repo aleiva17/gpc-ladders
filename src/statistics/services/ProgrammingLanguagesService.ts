@@ -11,11 +11,7 @@ export const getProgrammingLanguagesSortedByFrequency = (submissions: Array<Subm
   const result: Array<ProgrammingLanguageStat> = [];
   const languageFrequency: Map<string, number> = new Map();
 
-  submissions.forEach(({programmingLanguage, verdict}) => {
-    if (verdict !== "OK") {
-      return;
-    }
-
+  submissions.forEach(({programmingLanguage}) => {
     programmingLanguage = NormalizeProgrammingLanguagePipe.transform(programmingLanguage);
 
     if (!languageFrequency.has(programmingLanguage)) {
