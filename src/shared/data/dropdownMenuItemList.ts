@@ -7,9 +7,10 @@ import {ProblemListMenuItem} from "@/shared/prefabs/navigation-menu-items/Proble
 import {CopyTrainingMenuItem} from "@/shared/prefabs/navigation-menu-items/CopyTrainingMenuItem.tsx";
 import {AchievementsMenuItem} from "@/shared/prefabs/navigation-menu-items/AchievementsMenuItem.tsx";
 import {StatisticsMenuItem} from "@/shared/prefabs/navigation-menu-items/StatisticsMenuItem.tsx";
+import {SpyMenuItem} from "@/shared/prefabs/navigation-menu-items/SpyMenuItem.tsx";
 
 export const dropdownMenuItemList: Array<Array<JSXElementConstructor<MenuItemProps>>> = [
-  [ProblemListMenuItem, CopyTrainingMenuItem, StatisticsMenuItem, AchievementsMenuItem],
+  [ProblemListMenuItem, CopyTrainingMenuItem, SpyMenuItem, StatisticsMenuItem, AchievementsMenuItem],
   [ThemeSwitcherMenuItem, SettingsMenuItem],
   [LogoutMenuItem]
 ];
