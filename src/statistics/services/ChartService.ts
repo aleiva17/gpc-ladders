@@ -114,3 +114,33 @@ export const getTagsDataForTagDoughnutChart = (submissions: Array<Submission>): 
     ],
   };
 };
+
+export const getComparedTagsDataForTagHorizontalBarChart = (firstSubmissions: Array<Submission>, secondSubmissions: Array<Submission>, firstLabel: string, secondLabel: string): object => {
+  const firstSkillStats = getSkillsSortedByFrequency(firstSubmissions);
+  const secondSkillStats = getSkillsSortedByFrequency(secondSubmissions);
+
+  const tags = Array.from(
+    new Set(
+      firstSkillStats.map(skill => skill.name).concat(secondSkillStats.map(skill => skill.name))
+    )
+  );
+
+  const firstData = firstSkillStats.map(skill => skill.frequency);
+  const secondData = secondSkillStats.map(skill => skill.frequency);
+
+  return {
+    labels: tags,
+    datasets: [
+      {
+        label: firstLabel,
+        backgroundColor: "#3b82f6",
+        data: firstData
+      },
+      {
+        label: secondLabel,
+        backgroundColor: "#ec4899",
+        data: secondData
+      }
+    ],
+  };
+};
