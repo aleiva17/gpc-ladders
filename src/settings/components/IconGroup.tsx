@@ -1,5 +1,5 @@
-import {AppIconGroup} from "@/settings/data/appIcons.ts";
 import {SelectableIcon} from "@/settings/components/SelectableIcon.tsx";
+import {AppIconGroup} from "@/settings/domain/model/AppIconGroup.ts";
 import {ReactElement} from "react";
 
 type IconGroupProps = {
