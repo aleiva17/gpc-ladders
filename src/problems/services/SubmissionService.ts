@@ -8,8 +8,8 @@ const instance = axios.create({
   timeout: 10000
 });
 
-export const getSubmissions = async (username: string): Promise<Array<Submission>> => {
-  const response = await instance.get(`/user.status?handle=${username}`);
+export const getSubmissions = async (username: string, signal?: AbortSignal): Promise<Array<Submission>> => {
+  const response = await instance.get(`/user.status?handle=${username}`, signal ? { signal: signal } : {});
   const submissions = response.data;
 
   if (submissions.status !== "OK") {
