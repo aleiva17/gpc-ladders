@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import React from 'react';
 import '@/index.css';
+import 'atropos/css';
 
 import {AppRouter} from "@/routing/components/AppRouter.tsx";
 import {BrowserRouter} from "react-router-dom";
