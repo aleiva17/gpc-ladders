@@ -7,15 +7,26 @@ import {Submission} from "@/problems/domain/model/Submission.ts";
 import {toast} from "react-toastify";
 import {ProgressSpinner} from "primereact/progressspinner";
 import {UserStatsContainer} from "@/statistics/components/UserStatsContainer.tsx";
+import {User} from "@/security/domain/models/User.ts";
+import {getUserInfoByHandle} from "@/security/services/LinkCodeforcesAccountService.ts";
 
 export const StatisticsPage = (): ReactElement => {
-  const user = useUserStore(state => state.user)!;
+  const handle = useUserStore(state => state.user!.handle);
+  const updateUser = useUserStore(state => state.update);
+
+  const [user, setUser] = useState<User | undefined>(undefined);
   const [submissions, setSubmissions] = useState<Array<Submission> | undefined>(undefined);
 
   useEffect(() => {
-    getSubmissions(user.handle)
-      .then(userSubmissions => setSubmissions(userSubmissions))
-      .catch(error => toast.error(`Error: ${error}`));
+    getUserInfoByHandle(handle)
+      .then(res => {
+        setUser(res.data.result[0]);
+        updateUser(res.data.result[0]);
+        getSubmissions(handle)
+          .then(userSubmissions => setSubmissions(userSubmissions))
+          .catch(() => toast.error(`An error occurred retrieving your submissions`));
+      })
+      .catch(() => toast.error(`An error occurred retrieving your data`));
   }, []);
 
   return (
@@ -25,7 +36,7 @@ export const StatisticsPage = (): ReactElement => {
           <h1 className="text-5xl font-bold border-b-2 border-complementary-light dark:border-complementary-dark w-fit py-4 self-center text-center">My statistics</h1>
           <GoBackButton destination="/"/>
           {
-            submissions
+            submissions && user
               ?
               <UserStatsContainer user={user} submissions={submissions} />
               :
