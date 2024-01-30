@@ -36,11 +36,11 @@ export const LoginForm = (): ReactElement => {
           }
         );
       })
-      .catch((error) => {
+      .catch(() => {
         toast.update(
           toastId,
           {
-            render: `Error: ${error.response.data["comment"]}`,
+            render: `There was an error while trying to get '${codeforcesHandleRef.current!.value}' data`,
             type: "error",
             isLoading: false,
             autoClose: 3000
