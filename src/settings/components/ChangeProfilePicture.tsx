@@ -52,7 +52,7 @@ export const ChangeProfilePicture = ({ openDialog }: ChangeProfilePictureProps):
 
       <div className="grid grid-rows-3 md:grid-rows-none md:grid-cols-[auto_auto_1fr] items-center mt-2 mb-5">
         <button
-          className="flex justify-center items-center bg-[#06b6d4] hover:bg-[#059bb4] duration-300 rounded-lg text-white font-semibold disabled:opacity-50 whitespace-nowrap gap-2 px-4 py-2"
+          className="flex justify-center items-center bg-gpc-purple hover:bg-gpc-purple-darker dark:bg-[#22d3ee] dark:hover:bg-gpc-aqua duration-300 rounded-lg text-white font-semibold disabled:opacity-50 whitespace-nowrap gap-2 px-4 py-2"
           disabled={!checked}
           onClick={openDialog}
         >
