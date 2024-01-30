@@ -13,6 +13,7 @@ import {ProblemListPage} from "@/problems/pages/ProblemListPage.tsx";
 import {CopyTrainingPage} from "@/copy-training/pages/CopyTrainingPage.tsx";
 import {StatisticsPage} from "@/statistics/pages/StatisticsPage.tsx";
 import {SpyPage} from "@/spy/pages/SpyPage.tsx";
+import {AchievementsPage} from "@/achievements/pages/AchievementsPage.tsx";
 
 export const AppRouter = (): ReactElement => {
   const userIsLogged = useUserStore(state => state.user !== null);
@@ -31,6 +32,7 @@ export const AppRouter = (): ReactElement => {
         <Route path="/copy-training" element={ <CopyTrainingPage /> } />
         <Route path="/statistics" element={ <StatisticsPage /> } />
         <Route path="/spy" element={ <SpyPage /> } />
+        <Route path="/achievements" element={ <AchievementsPage /> } />
       </Route>
       <Route
         path="login"
