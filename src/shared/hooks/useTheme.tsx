@@ -8,9 +8,15 @@ export const useTheme = (): [Theme, Dispatch<SetStateAction<Theme>>] => {
 
   useEffect(() => {
     const root = window.document.documentElement;
+    const stylesheet = document.getElementById("link-stylesheet")! as HTMLLinkElement;
+
     root.classList.remove(prevTheme);
     root.classList.add(theme);
     localStorage.setItem("theme", theme);
+
+    stylesheet.href = theme === "light"
+      ? "/themes/lara-light-purple/theme.css"
+      : "/themes/lara-dark-cyan/theme.css";
   }, [theme, prevTheme]);
 
   return [theme, setTheme];

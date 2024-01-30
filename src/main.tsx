@@ -7,8 +7,6 @@ import {AppRouter} from "@/routing/components/AppRouter.tsx";
 import {BrowserRouter} from "react-router-dom";
 import {PrimeReactProvider} from "primereact/api";
 
-import "primereact/resources/themes/lara-light-cyan/theme.css";
-
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
