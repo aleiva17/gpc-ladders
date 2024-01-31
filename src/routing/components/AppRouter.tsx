@@ -14,6 +14,7 @@ import {CopyTrainingPage} from "@/copy-training/pages/CopyTrainingPage.tsx";
 import {StatisticsPage} from "@/statistics/pages/StatisticsPage.tsx";
 import {SpyPage} from "@/spy/pages/SpyPage.tsx";
 import {AchievementsPage} from "@/achievements/pages/AchievementsPage.tsx";
+import {ShareProfilePage} from "@/statistics/pages/ShareProfilePage.tsx";
 
 export const AppRouter = (): ReactElement => {
   const userIsLogged = useUserStore(state => state.user !== null);
@@ -38,6 +39,7 @@ export const AppRouter = (): ReactElement => {
         path="login"
         element={ userIsLogged ? <Navigate to="/" /> : <LoginPage /> }
       />
+      <Route path="/profile/:handle" element={ <ShareProfilePage /> } />
       <Route
         path="*"
         element={ <PageNotFound /> }
