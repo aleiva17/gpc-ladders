@@ -1,10 +1,20 @@
-import {ReactElement} from "react";
-import {problemGroups} from "@/problems/data/problem-groups.ts";
+import {ReactElement, useEffect, useState} from "react";
 import {ProblemGroupCard} from "@/problems/components/ProblemGroupCard.tsx";
 import {BaseLayout} from "@/shared/layouts/BaseLayout.tsx";
 import {GoBackButton} from "@/shared/components/GoBackButton.tsx";
+import {getAllProblemGroups} from "@/problems/services/ProblemService.ts";
+import {ProblemGroup} from "@/problems/domain/model/ProblemGroup.ts";
+import {toast} from "react-toastify";
 
 export const ListOfProblemGroupsPage = (): ReactElement => {
+  const [problemGroups, setProblemGroups] = useState<Array<ProblemGroup>>([]);
+
+  useEffect(() => {
+    getAllProblemGroups()
+      .then(setProblemGroups)
+      .catch(toast.error);
+  }, []);
+
   return (
     <BaseLayout>
       <div className="flex justify-center">
