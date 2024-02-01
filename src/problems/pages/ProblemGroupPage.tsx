@@ -1,10 +1,10 @@
 import {ReactElement, useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {BaseLayout} from "@/shared/layouts/BaseLayout.tsx";
-import {problemGroupList, ProblemGroupListContent} from "@/problems/data/problem-group-list.ts";
 import {ProblemGroupDetail} from "@/problems/domain/model/ProblemGroupDetail.ts";
 import {ProblemListCard} from "@/problems/components/ProblemListCard.tsx";
 import {GoBackButton} from "@/shared/components/GoBackButton.tsx";
+import {getProblemGroup} from "@/problems/services/ProblemService.ts";
 
 export const ProblemGroupPage = (): ReactElement => {
   const { groupId } = useParams();
@@ -12,11 +12,9 @@ export const ProblemGroupPage = (): ReactElement => {
   const [problemGroup, setProblemGroup] = useState<ProblemGroupDetail | undefined>();
 
   useEffect(() => {
-    if (!Object.keys(problemGroupList).includes(groupId!)) {
-      navigate("/error-404");
-      return;
-    }
-    setProblemGroup(problemGroupList[groupId as keyof ProblemGroupListContent]);
+    getProblemGroup(groupId!)
+      .then(setProblemGroup)
+      .catch(() => navigate("/error-404"));
   }, [groupId, navigate]);
 
   return (
