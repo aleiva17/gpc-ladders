@@ -1,6 +1,7 @@
 import {ProblemGroup} from "@/problems/domain/model/ProblemGroup.ts";
 import axios from "axios";
 import {ProblemGroupDetail} from "@/problems/domain/model/ProblemGroupDetail.ts";
+import {ProblemListDetail} from "@/problems/domain/model/ProblemListDetail.ts";
 
 const instance = axios.create({
   baseURL: "http://localhost:8080/",
@@ -20,6 +21,16 @@ export const getAllProblemGroups = async (): Promise<Array<ProblemGroup>> => {
 
 export const getProblemGroup = async (id: string): Promise<ProblemGroupDetail> => {
   const response = await instance.get(`/problem-groups/${id}`);
+
+  if (response.status !== 200) {
+    throw "There was an error retrieving problem group data";
+  }
+
+  return response.data;
+};
+
+export const getProblemList = async (groupId: string, listId: string): Promise<ProblemListDetail> => {
+  const response = await instance.get(`/problem-lists/${groupId}/${listId}`);
 
   if (response.status !== 200) {
     throw "There was an error retrieving problem group data";
