@@ -25,6 +25,11 @@ export const VerdictsChart = ({data, totalData, title}: VerdictsChartProps): Rea
                     return `${context.dataset.label}: ${context.formattedValue} (${percentage}%)`;
                   }
                 }
+              },
+              legend: {
+                labels: {
+                  color: "#64748b"
+                }
               }
             }
           }}

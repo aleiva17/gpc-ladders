@@ -15,6 +15,31 @@ export const ProblemRatingsChart = ({data}: ProblemRatingChartProps): ReactEleme
         options={{
           maintainAspectRatio: false,
           aspectRatio: 0.8,
+          scales: {
+            x: {
+              ticks: {
+                color: "#64748b"
+              },
+              grid: {
+                color: "#4b5563"
+              }
+            },
+            y: {
+              ticks: {
+                color: "#64748b"
+              },
+              grid: {
+                color: "#4b5563"
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: "#64748b"
+              }
+            }
+          }
         }}
       />
     </div>

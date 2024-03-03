@@ -12,7 +12,34 @@ export const TagsChart = ({data}: TagsChartProps): ReactElement => {
       <Chart
         type="bar"
         data={data}
-        options={{ indexAxis: "y" }}
+        options={{
+          indexAxis: "y",
+          scales: {
+            x: {
+              ticks: {
+                color: "#64748b"
+              },
+              grid: {
+                color: "#4b5563"
+              }
+            },
+            y: {
+              ticks: {
+                color: "#64748b"
+              },
+              grid: {
+                color: "#4b5563"
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: "#64748b"
+              }
+            }
+          }
+        }}
       />
     </div>
   );
