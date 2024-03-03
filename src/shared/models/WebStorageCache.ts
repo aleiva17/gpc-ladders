@@ -36,7 +36,7 @@ export class WebStorageCache {
       localStorage.setItem(this.id, JSON.stringify(this.cache));
       return undefined;
     }
-    console.log("RETRIEVED!");
+
     return storedData.payload;
   }
 }
