@@ -5,7 +5,7 @@ import {ProblemListDetail} from "@/problems/domain/model/ProblemListDetail.ts";
 import {WebStorageCache} from "@/shared/models/WebStorageCache.ts";
 
 const instance = axios.create({
-  baseURL: "https://microhost.biz:8443/",
+  baseURL: "https://microhost.biz:8443/gpc/",
   timeout: 10000
 });
 
